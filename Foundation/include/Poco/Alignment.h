@@ -37,7 +37,7 @@
 #include <cstddef>
 
 
-#ifdef POCO_ENABLE_CPP11
+#ifdef POCO_POCO_ENABLECPP11
 
 
 	#include <type_traits>
@@ -242,7 +242,7 @@
 	} // namespace Poco
 
 
-#endif // POCO_ENABLE_CPP11
+#endif // POCO_POCO_ENABLECPP11
 
 
 #endif // Foundation_AlignOf_INCLUDED

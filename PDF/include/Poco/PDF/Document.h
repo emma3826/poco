@@ -62,15 +62,15 @@ public:
 
 	enum Permission
 	{
-		ENABLE_READ = HPDF_ENABLE_READ,
+		POCO_ENABLEREAD = HPDF_POCO_ENABLEREAD,
 			/// User can read the document.
-		ENABLE_PRINT = HPDF_ENABLE_PRINT,
+		POCO_ENABLEPRINT = HPDF_POCO_ENABLEPRINT,
 			/// User can print the document.
-		ENABLE_EDIT_ALL = HPDF_ENABLE_EDIT_ALL,
+		POCO_ENABLEEDIT_ALL = HPDF_POCO_ENABLEEDIT_ALL,
 			/// User can edit the contents of the document other than annotations, form fields.
-		ENABLE_COPY = HPDF_ENABLE_COPY,
+		POCO_ENABLECOPY = HPDF_POCO_ENABLECOPY,
 			/// User can copy the text and the graphics of the document.
-		ENABLE_EDIT = HPDF_ENABLE_EDIT
+		POCO_ENABLEEDIT = HPDF_POCO_ENABLEEDIT
 			/// User can add or modify the annotations and form fields of the document.
 	};
 

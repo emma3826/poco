@@ -38,7 +38,7 @@ target_include_directories( "${LIBNAME}"
 POCO_INSTALL("${LIBNAME}")
 POCO_GENERATE_PACKAGE("${LIBNAME}")
 
-if (ENABLE_TESTS)
+if (POCO_ENABLETESTS)
     add_subdirectory(samples)
     add_subdirectory(testsuite)
 endif ()

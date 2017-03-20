@@ -110,7 +110,7 @@ void Context::init()
 	if (!_hCollectionCertStore)
 		throw SSLException("Failed to create collection store", GetLastError());
 
-	if (!CertAddStoreToCollection(_hCollectionCertStore, _hMemCertStore, CERT_PHYSICAL_STORE_ADD_ENABLE_FLAG, 1))
+	if (!CertAddStoreToCollection(_hCollectionCertStore, _hMemCertStore, CERT_PHYSICAL_STORE_ADD_POCO_ENABLEFLAG, 1))
 		throw SSLException("Failed to add memory certificate store to collection store", GetLastError());
 
 	if (_options & OPT_TRUST_ROOTS_WIN_CERT_STORE)
@@ -121,7 +121,7 @@ void Context::init()
 		_hRootCertStore = CertOpenSystemStoreW(0, rootStore.c_str());
 		if (!_hRootCertStore)
 			throw SSLException("Failed to open root certificate store", GetLastError());
-		if (!CertAddStoreToCollection(_hCollectionCertStore, _hRootCertStore, CERT_PHYSICAL_STORE_ADD_ENABLE_FLAG, 1))
+		if (!CertAddStoreToCollection(_hCollectionCertStore, _hRootCertStore, CERT_PHYSICAL_STORE_ADD_POCO_ENABLEFLAG, 1))
 			throw SSLException("Failed to add root certificate store to collection store", GetLastError());
 	}
 }

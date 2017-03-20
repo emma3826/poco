@@ -333,8 +333,8 @@ HPDF_Encrypt_Init  (HPDF_Encrypt  attr)
     attr->key_len = 5;
     HPDF_MemCpy (attr->owner_passwd, HPDF_PADDING_STRING, HPDF_PASSWD_LEN);
     HPDF_MemCpy (attr->user_passwd, HPDF_PADDING_STRING, HPDF_PASSWD_LEN);
-    attr->permission = HPDF_ENABLE_PRINT | HPDF_ENABLE_EDIT_ALL |
-        HPDF_ENABLE_COPY | HPDF_ENABLE_EDIT | HPDF_PERMISSION_PAD;
+    attr->permission = HPDF_POCO_ENABLEPRINT | HPDF_POCO_ENABLEEDIT_ALL |
+        HPDF_POCO_ENABLECOPY | HPDF_POCO_ENABLEEDIT | HPDF_PERMISSION_PAD;
 }
 
 

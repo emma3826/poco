@@ -229,8 +229,8 @@ void X509Certificate::extractNames(std::string& cmnName, std::set<std::string>& 
 		if (std::strcmp(pExt->pszObjId, szOID_SUBJECT_ALT_NAME2) == 0)
 		{
 			DWORD flags(0);
-#if defined(CRYPT_DECODE_ENABLE_PUNYCODE_FLAG)
-			flags |= CRYPT_DECODE_ENABLE_PUNYCODE_FLAG;
+#if defined(CRYPT_DECODE_POCO_ENABLEPUNYCODE_FLAG)
+			flags |= CRYPT_DECODE_POCO_ENABLEPUNYCODE_FLAG;
 #endif
 			Poco::Buffer<char> buffer(256);
 			DWORD bufferSize = buffer.sizeBytes();

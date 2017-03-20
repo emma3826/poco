@@ -303,8 +303,8 @@ private:
 	static const Context::VerificationMode VAL_VER_MODE;
 	static const std::string CFG_VER_DEPTH;
 	static const int         VAL_VER_DEPTH;
-	static const std::string CFG_ENABLE_DEFAULT_CA;
-	static const bool        VAL_ENABLE_DEFAULT_CA;
+	static const std::string CFG_POCO_ENABLEDEFAULT_CA;
+	static const bool        VAL_POCO_ENABLEDEFAULT_CA;
 	static const std::string CFG_CIPHER_LIST;
 	static const std::string CFG_CYPHER_LIST; // for backwards compatibility
 	static const std::string VAL_CIPHER_LIST;

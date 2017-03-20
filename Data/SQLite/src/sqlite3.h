@@ -1625,7 +1625,7 @@ struct sqlite3_mem_methods {
 ** beyond those provided for by [SQLITE_CONFIG_SCRATCH] and
 ** [SQLITE_CONFIG_PAGECACHE].
 ** ^The SQLITE_CONFIG_HEAP option is only available if SQLite is compiled
-** with either [SQLITE_ENABLE_MEMSYS3] or [SQLITE_ENABLE_MEMSYS5] and returns
+** with either [SQLITE_POCO_ENABLEMEMSYS3] or [SQLITE_POCO_ENABLEMEMSYS5] and returns
 ** [SQLITE_ERROR] if invoked otherwise.
 ** ^There are three arguments to SQLITE_CONFIG_HEAP:
 ** An 8-byte aligned pointer to the memory,
@@ -1742,7 +1742,7 @@ struct sqlite3_mem_methods {
 ** [[SQLITE_CONFIG_SQLLOG]]
 ** <dt>SQLITE_CONFIG_SQLLOG
 ** <dd>This option is only available if sqlite is compiled with the
-** [SQLITE_ENABLE_SQLLOG] pre-processor macro defined. The first argument should
+** [SQLITE_POCO_ENABLESQLLOG] pre-processor macro defined. The first argument should
 ** be a pointer to a function of type void(*)(void*,sqlite3*,const char*, int).
 ** The second should be of type (void*). The callback is invoked by the library
 ** in three separate circumstances, identified by the value passed as the
@@ -1859,7 +1859,7 @@ struct sqlite3_mem_methods {
 ** memory is in use leaves the configuration unchanged and returns 
 ** [SQLITE_BUSY].)^</dd>
 **
-** <dt>SQLITE_DBCONFIG_ENABLE_FKEY</dt>
+** <dt>SQLITE_DBCONFIG_POCO_ENABLEFKEY</dt>
 ** <dd> ^This option is used to enable or disable the enforcement of
 ** [foreign key constraints].  There should be two additional arguments.
 ** The first argument is an integer which is 0 to disable FK enforcement,
@@ -1869,7 +1869,7 @@ struct sqlite3_mem_methods {
 ** following this call.  The second parameter may be a NULL pointer, in
 ** which case the FK enforcement setting is not reported back. </dd>
 **
-** <dt>SQLITE_DBCONFIG_ENABLE_TRIGGER</dt>
+** <dt>SQLITE_DBCONFIG_POCO_ENABLETRIGGER</dt>
 ** <dd> ^This option is used to enable or disable [CREATE TRIGGER | triggers].
 ** There should be two additional arguments.
 ** The first argument is an integer which is 0 to disable triggers,
@@ -1882,8 +1882,8 @@ struct sqlite3_mem_methods {
 ** </dl>
 */
 #define SQLITE_DBCONFIG_LOOKASIDE       1001  /* void* int int */
-#define SQLITE_DBCONFIG_ENABLE_FKEY     1002  /* int int* */
-#define SQLITE_DBCONFIG_ENABLE_TRIGGER  1003  /* int int* */
+#define SQLITE_DBCONFIG_POCO_ENABLEFKEY     1002  /* int int* */
+#define SQLITE_DBCONFIG_POCO_ENABLETRIGGER  1003  /* int int* */
 
 
 /*
@@ -3292,7 +3292,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_limit(sqlite3*, int id, int newVal);
 ** ^The specific value of WHERE-clause [parameter] might influence the 
 ** choice of query plan if the parameter is the left-hand side of a [LIKE]
 ** or [GLOB] operator or if the parameter is compared to an indexed column
-** and the [SQLITE_ENABLE_STAT3] compile-time option is enabled.
+** and the [SQLITE_POCO_ENABLESTAT3] compile-time option is enabled.
 ** </li>
 ** </ol>
 */
@@ -3717,7 +3717,7 @@ SQLITE_API const void *SQLITE_STDCALL sqlite3_column_name16(sqlite3_stmt*, int N
 ** UTF-16 encoded strings and the other functions return UTF-8.
 **
 ** ^These APIs are only available if the library was compiled with the
-** [SQLITE_ENABLE_COLUMN_METADATA] C-preprocessor symbol.
+** [SQLITE_POCO_ENABLECOLUMN_METADATA] C-preprocessor symbol.
 **
 ** If two or more threads call one or more of these routines against the same
 ** prepared statement and column at the same time then the results are
@@ -4840,7 +4840,7 @@ SQLITE_API void SQLITE_STDCALL sqlite3_activate_see(
 );
 #endif
 
-#ifdef SQLITE_ENABLE_CEROD
+#ifdef SQLITE_POCO_ENABLECEROD
 /*
 ** Specify the activation key for a CEROD database.  Unless 
 ** activated, none of the CEROD routines will work.
@@ -5195,7 +5195,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_enable_shared_cache(int);
 ** ^sqlite3_release_memory() returns the number of bytes actually freed,
 ** which might be more or less than the amount requested.
 ** ^The sqlite3_release_memory() routine is a no-op returning zero
-** if SQLite is not compiled with [SQLITE_ENABLE_MEMORY_MANAGEMENT].
+** if SQLite is not compiled with [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT].
 **
 ** See also: [sqlite3_db_release_memory()]
 */
@@ -5208,7 +5208,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_release_memory(int);
 ** ^The sqlite3_db_release_memory(D) interface attempts to free as much heap
 ** memory as possible from database connection D. Unlike the
 ** [sqlite3_release_memory()] interface, this interface is in effect even
-** when the [SQLITE_ENABLE_MEMORY_MANAGEMENT] compile-time option is
+** when the [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT] compile-time option is
 ** omitted.
 **
 ** See also: [sqlite3_release_memory()]
@@ -5253,14 +5253,14 @@ SQLITE_API int SQLITE_STDCALL sqlite3_db_release_memory(sqlite3*);
 ** </ul>)^
 **
 ** Beginning with SQLite version 3.7.3, the soft heap limit is enforced
-** regardless of whether or not the [SQLITE_ENABLE_MEMORY_MANAGEMENT]
-** compile-time option is invoked.  With [SQLITE_ENABLE_MEMORY_MANAGEMENT],
+** regardless of whether or not the [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT]
+** compile-time option is invoked.  With [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT],
 ** the soft heap limit is enforced on every memory allocation.  Without
-** [SQLITE_ENABLE_MEMORY_MANAGEMENT], the soft heap limit is only enforced
+** [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT], the soft heap limit is only enforced
 ** when memory is allocated by the page cache.  Testing suggests that because
 ** the page cache is the predominate memory user in SQLite, most
 ** applications will achieve adequate soft heap limit enforcement without
-** the use of [SQLITE_ENABLE_MEMORY_MANAGEMENT].
+** the use of [SQLITE_POCO_ENABLEMEMORY_MANAGEMENT].
 **
 ** The circumstances under which SQLite will enforce the soft heap limit may
 ** changes in future releases of SQLite.
@@ -7170,7 +7170,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_backup_pagecount(sqlite3_backup *p);
 ** ^This API may be used to register a callback that SQLite will invoke 
 ** when the connection currently holding the required lock relinquishes it.
 ** ^This API is only available if the library was compiled with the
-** [SQLITE_ENABLE_UNLOCK_NOTIFY] C-preprocessor symbol defined.
+** [SQLITE_POCO_ENABLEUNLOCK_NOTIFY] C-preprocessor symbol defined.
 **
 ** See Also: [Using the SQLite Unlock Notification Feature].
 **
@@ -7688,7 +7688,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_vtab_on_conflict(sqlite3 *);
 ** issue warnings and/or rerun [ANALYZE] if discrepancies are found.
 **
 ** Since this interface is expected to be rarely used, it is only
-** available if SQLite is compiled using the [SQLITE_ENABLE_STMT_SCANSTATUS]
+** available if SQLite is compiled using the [SQLITE_POCO_ENABLESTMT_SCANSTATUS]
 ** compile-time option.
 **
 ** The "iScanStatusOp" parameter determines which status information to return.
@@ -7723,7 +7723,7 @@ SQLITE_API int SQLITE_STDCALL sqlite3_stmt_scanstatus(
 ** ^Zero all [sqlite3_stmt_scanstatus()] related event counters.
 **
 ** This API is only available if the library is built with pre-processor
-** symbol [SQLITE_ENABLE_STMT_SCANSTATUS] defined.
+** symbol [SQLITE_POCO_ENABLESTMT_SCANSTATUS] defined.
 */
 SQLITE_API void SQLITE_STDCALL sqlite3_stmt_scanstatus_reset(sqlite3_stmt*);
 

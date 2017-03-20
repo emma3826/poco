@@ -40,7 +40,7 @@ DirectoryWatcherTest::~DirectoryWatcherTest()
 
 void DirectoryWatcherTest::testAdded()
 {
-	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_ENABLE_ALL, 2);
+	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_POCO_ENABLEALL, 2);
 	
 	dw.itemAdded += Poco::delegate(this, &DirectoryWatcherTest::onItemAdded);
 	dw.itemRemoved += Poco::delegate(this, &DirectoryWatcherTest::onItemRemoved);
@@ -74,7 +74,7 @@ void DirectoryWatcherTest::testRemoved()
 	fos << "Hello, world!";
 	fos.close();
 
-	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_ENABLE_ALL, 2);
+	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_POCO_ENABLEALL, 2);
 	
 	dw.itemAdded += Poco::delegate(this, &DirectoryWatcherTest::onItemAdded);
 	dw.itemRemoved += Poco::delegate(this, &DirectoryWatcherTest::onItemRemoved);
@@ -105,7 +105,7 @@ void DirectoryWatcherTest::testModified()
 	fos << "Hello, world!";
 	fos.close();
 
-	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_ENABLE_ALL, 2);
+	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_POCO_ENABLEALL, 2);
 	
 	dw.itemAdded += Poco::delegate(this, &DirectoryWatcherTest::onItemAdded);
 	dw.itemRemoved += Poco::delegate(this, &DirectoryWatcherTest::onItemRemoved);
@@ -137,7 +137,7 @@ void DirectoryWatcherTest::testMoved()
 	fos << "Hello, world!";
 	fos.close();
 
-	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_ENABLE_ALL, 2);
+	DirectoryWatcher dw(path().toString(), DirectoryWatcher::DW_FILTER_POCO_ENABLEALL, 2);
 	
 	dw.itemAdded += Poco::delegate(this, &DirectoryWatcherTest::onItemAdded);
 	dw.itemRemoved += Poco::delegate(this, &DirectoryWatcherTest::onItemRemoved);

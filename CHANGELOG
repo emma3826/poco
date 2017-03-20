@@ -1287,7 +1287,7 @@ Release 1.3.6 (2009-11-24)
 - fixed SF# 2795646: IPv6 address parsing bug
 - fixed #0000092: ServerApplication::waitForTerminationRequest(), SIGINT and GDB.
   Poco::Util::ServerApplication::waitForTerminationRequest() no longer registers a
-  signal handler for SIGINT if the environment variable POCO_ENABLE_DEBUGGER
+  signal handler for SIGINT if the environment variable POCO_POCO_ENABLEDEBUGGER
   is defined.
 - fixed SF# 2896070: Poco::Net::Context with non-ASCII paths
 - added Unicode Surrogate support to Poco::UTF16Encoding. 

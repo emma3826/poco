@@ -25,12 +25,12 @@ set_target_properties( "${LIBNAME}"
     )
 
 target_link_libraries( "${LIBNAME}" Foundation)
-if (ENABLE_XML)
+if (POCO_ENABLEXML)
 	target_link_libraries( "${LIBNAME}" XML)
 else ()
 	add_definitions( -DPOCO_UTIL_NO_XMLCONFIGURATION )
 endif()
-if (ENABLE_JSON)
+if (POCO_ENABLEJSON)
 	target_link_libraries( "${LIBNAME}" JSON)
 else ()
 	add_definitions( -DPOCO_UTIL_NO_JSONCONFIGURATION )
@@ -46,7 +46,7 @@ target_include_directories( "${LIBNAME}"
 POCO_INSTALL("${LIBNAME}")
 POCO_GENERATE_PACKAGE("${LIBNAME}")
 
-if (ENABLE_TESTS)
+if (POCO_ENABLETESTS)
     add_subdirectory(samples)
     add_subdirectory(testsuite)
 endif ()

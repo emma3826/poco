@@ -112,7 +112,7 @@ struct Large
 // The bugcheck test is normally disabled, as it
 // causes a break into the debugger.
 //
-#define ENABLE_BUGCHECK_TEST 0
+#define POCO_ENABLEBUGCHECK_TEST 0
 
 
 CoreTest::CoreTest(const std::string& name): CppUnit::TestCase(name)
@@ -151,7 +151,7 @@ void CoreTest::testFixedLength()
 
 void CoreTest::testBugcheck()
 {
-#if ENABLE_BUGCHECK_TEST
+#if POCO_ENABLEBUGCHECK_TEST
 	try
 	{
 		Bugcheck::assertion("test", __FILE__, __LINE__);	
@@ -254,7 +254,7 @@ void CoreTest::testBuffer()
 	assert (b.size() == s);
 	assert (b.capacity() == s);
 
-#if ENABLE_BUGCHECK_TEST
+#if POCO_ENABLEBUGCHECK_TEST
 	try { int i = b[s]; fail ("must fail"); }
 	catch (Exception&) { }
 #endif

@@ -92,7 +92,7 @@ public:
 
 	enum DirectoryEventMask
 	{
-		DW_FILTER_ENABLE_ALL = 31,
+		DW_FILTER_POCO_ENABLEALL = 31,
 			/// Enables all event types.
 
 		DW_FILTER_DISABLE_ALL = 0
@@ -134,7 +134,7 @@ public:
 	BasicEvent<const Exception> scanError;
 		/// Fired when an error occurs while scanning for changes.
 	
-	DirectoryWatcher(const std::string& path, int eventMask = DW_FILTER_ENABLE_ALL, int scanInterval = DW_DEFAULT_SCAN_INTERVAL);
+	DirectoryWatcher(const std::string& path, int eventMask = DW_FILTER_POCO_ENABLEALL, int scanInterval = DW_DEFAULT_SCAN_INTERVAL);
 		/// Creates a DirectoryWatcher for the directory given in path.
 		/// To enable only specific events, an eventMask can be specified by
 		/// OR-ing the desired event IDs (e.g., DW_ITEM_ADDED | DW_ITEM_MODIFIED).
@@ -142,7 +142,7 @@ public:
 		/// scanInterval specifies the interval in seconds between scans
 		/// of the directory.
 		
-	DirectoryWatcher(const File& directory, int eventMask = DW_FILTER_ENABLE_ALL, int scanInterval = DW_DEFAULT_SCAN_INTERVAL);
+	DirectoryWatcher(const File& directory, int eventMask = DW_FILTER_POCO_ENABLEALL, int scanInterval = DW_DEFAULT_SCAN_INTERVAL);
 		/// Creates a DirectoryWatcher for the specified directory
 		/// To enable only specific events, an eventMask can be specified by
 		/// OR-ing the desired event IDs (e.g., DW_ITEM_ADDED | DW_ITEM_MODIFIED).

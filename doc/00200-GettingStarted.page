@@ -310,7 +310,7 @@ This will build Poco in a subdirectory <*cmake_build*>. All files produced durin
 CMake allows you to set some build time options. As an example: to disable the SevenZip support
 type the following command:
 
-    $ cmake -DENABLE_SEVENZIP=OFF ..
+    $ cmake -DPOCO_ENABLESEVENZIP=OFF ..
 
 Similar options are available for other components (see: CMakeLists.txt).
 

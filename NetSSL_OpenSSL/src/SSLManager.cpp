@@ -37,8 +37,8 @@ const std::string SSLManager::CFG_VER_MODE("verificationMode");
 const Context::VerificationMode SSLManager::VAL_VER_MODE(Context::VERIFY_STRICT);
 const std::string SSLManager::CFG_VER_DEPTH("verificationDepth");
 const int         SSLManager::VAL_VER_DEPTH(9);
-const std::string SSLManager::CFG_ENABLE_DEFAULT_CA("loadDefaultCAFile");
-const bool        SSLManager::VAL_ENABLE_DEFAULT_CA(false);
+const std::string SSLManager::CFG_POCO_ENABLEDEFAULT_CA("loadDefaultCAFile");
+const bool        SSLManager::VAL_POCO_ENABLEDEFAULT_CA(false);
 const std::string SSLManager::CFG_CIPHER_LIST("cipherList");
 const std::string SSLManager::CFG_CYPHER_LIST("cypherList");
 const std::string SSLManager::VAL_CIPHER_LIST("ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
@@ -256,7 +256,7 @@ void SSLManager::initDefaultContext(bool server)
 	}
 
 	int verDepth = config.getInt(prefix + CFG_VER_DEPTH, VAL_VER_DEPTH);
-	bool loadDefCA = config.getBool(prefix + CFG_ENABLE_DEFAULT_CA, VAL_ENABLE_DEFAULT_CA);
+	bool loadDefCA = config.getBool(prefix + CFG_POCO_ENABLEDEFAULT_CA, VAL_POCO_ENABLEDEFAULT_CA);
 	std::string cipherList = config.getString(prefix + CFG_CIPHER_LIST, VAL_CIPHER_LIST);
 	cipherList = config.getString(prefix + CFG_CYPHER_LIST, cipherList); // for backwards compatibility
 	bool requireTLSv1 = config.getBool(prefix + CFG_REQUIRE_TLSV1, false);

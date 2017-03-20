@@ -40,7 +40,7 @@ public:
 		/// On Windows, this function uses the IsDebuggerPresent()
 		/// function.
 		/// On Unix, this function returns true if the environment
-		/// variable POCO_ENABLE_DEBUGGER is set.
+		/// variable POCO_POCO_ENABLEDEBUGGER is set.
 		/// On OpenVMS, this function always returns true in debug,
 		/// mode, false otherwise.
 

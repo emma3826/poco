@@ -41,7 +41,7 @@ template <class> class VarHolderImpl;
 
 #ifndef POCO_NO_SOO
 
-#ifndef POCO_ENABLE_CPP11
+#ifndef POCO_POCO_ENABLECPP11
 	// C++11 needed for std::aligned_storage
 	#error "Any SOO can only be enabled with C++11 support"
 #endif

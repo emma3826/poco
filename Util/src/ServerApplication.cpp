@@ -573,7 +573,7 @@ void ServerApplication::waitForTerminationRequest()
 #ifndef POCO_ANDROID
 	sigset_t sset;
 	sigemptyset(&sset);
-	if (!std::getenv("POCO_ENABLE_DEBUGGER"))
+	if (!std::getenv("POCO_POCO_ENABLEDEBUGGER"))
 	{
 		sigaddset(&sset, SIGINT);
 	}

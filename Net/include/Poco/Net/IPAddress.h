@@ -393,7 +393,7 @@ private:
 #ifdef POCO_HAVE_ALIGNMENT
 	char* storage();
 
-	#ifdef POCO_ENABLE_CPP11
+	#ifdef POCO_POCO_ENABLECPP11
 		static const unsigned sz = sizeof(Poco::Net::Impl::IPv6AddressImpl);
 		typedef std::aligned_storage<sz>::type AlignerType;
 
@@ -403,9 +403,9 @@ private:
 		private:
 			AlignerType aligner;
 		}
-	#else // !POCO_ENABLE_CPP11
+	#else // !POCO_POCO_ENABLECPP11
 		AlignedCharArrayUnion <Poco::Net::Impl::IPv6AddressImpl>
-	#endif // POCO_ENABLE_CPP11
+	#endif // POCO_POCO_ENABLECPP11
 		_memory;
 #else // !POCO_HAVE_ALIGNMENT
 	Ptr _pImpl;

@@ -86,11 +86,11 @@
 /*----------------------------------------------------------------------------*/
 /*----- permission flags (only Revision 2 is supported)-----------------------*/
 
-#define HPDF_ENABLE_READ         0
-#define HPDF_ENABLE_PRINT        4
-#define HPDF_ENABLE_EDIT_ALL     8
-#define HPDF_ENABLE_COPY         16
-#define HPDF_ENABLE_EDIT         32
+#define HPDF_POCO_ENABLEREAD         0
+#define HPDF_POCO_ENABLEPRINT        4
+#define HPDF_POCO_ENABLEEDIT_ALL     8
+#define HPDF_POCO_ENABLECOPY         16
+#define HPDF_POCO_ENABLEEDIT         32
 
 
 /*----------------------------------------------------------------------------*/
