@@ -334,4 +334,5 @@ foreach(component ${Poco_COMPONENTS})
 SET_PROPERTY(GLOBAL APPEND PROPERTY  POCO_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${component}/include")
 message(STATUS "Building: ${component}")
 endforeach()
+SET_PROPERTY(GLOBAL APPEND PROPERTY  POCO_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Foundation/include")
 
