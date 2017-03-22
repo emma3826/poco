@@ -23,7 +23,7 @@ set_target_properties( "${LIBNAME}"
     OUTPUT_NAME ${POCO_LIBNAME}
     DEFINE_SYMBOL Util_EXPORTS
     )
-
+SET_PROPERTY(GLOBAL PROPERTY POCO_LIB_UTIL ${POCO_LIBNAME})
 target_link_libraries( "${LIBNAME}" Foundation)
 if (POCO_ENABLEXML)
 	target_link_libraries( "${LIBNAME}" XML)
