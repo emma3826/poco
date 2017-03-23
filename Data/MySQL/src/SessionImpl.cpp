@@ -40,10 +40,10 @@ namespace Data {
 namespace MySQL {
 
 
-const std::string SessionImpl::MYSQL_READ_UNCOMMITTED = "READ UNCOMMITTED";
-const std::string SessionImpl::MYSQL_READ_COMMITTED = "READ COMMITTED";
-const std::string SessionImpl::MYSQL_REPEATABLE_READ = "REPEATABLE READ";
-const std::string SessionImpl::MYSQL_SERIALIZABLE = "SERIALIZABLE";
+const std::string SessionImpl::POCO_MYSQL_READ_UNCOMMITTED = "READ UNCOMMITTED";
+const std::string SessionImpl::POCO_MYSQL_READ_COMMITTED = "READ COMMITTED";
+const std::string SessionImpl::POCO_MYSQL_REPEATABLE_READ = "REPEATABLE READ";
+const std::string SessionImpl::POCO_MYSQL_SERIALIZABLE = "SERIALIZABLE";
 
 
 SessionImpl::SessionImpl(const std::string& connectionString, std::size_t loginTimeout) : 
@@ -75,7 +75,7 @@ void SessionImpl::open(const std::string& connect)
 	_handle.init();
 	
 	unsigned int timeout = static_cast<unsigned int>(getLoginTimeout());
-	_handle.options(MYSQL_OPT_CONNECT_TIMEOUT, timeout);
+	_handle.options(POCO_MYSQL_OPT_CONNECT_TIMEOUT, timeout);
 
 	std::map<std::string, std::string> options;
 
@@ -118,28 +118,28 @@ void SessionImpl::open(const std::string& connect)
 		throw MySQLException("create session: specify correct port (numeric in decimal notation)");
 
 	if (options["compress"] == "true")
-		_handle.options(MYSQL_OPT_COMPRESS);
+		_handle.options(POCO_MYSQL_OPT_COMPRESS);
 	else if (options["compress"] == "false")
 		;
 	else if (!options["compress"].empty())
 		throw MySQLException("create session: specify correct compress option (true or false) or skip it");
 
 	if (options["auto-reconnect"] == "true")
-		_handle.options(MYSQL_OPT_RECONNECT, true);
+		_handle.options(POCO_MYSQL_OPT_RECONNECT, true);
 	else if (options["auto-reconnect"] == "false")
-		_handle.options(MYSQL_OPT_RECONNECT, false);
+		_handle.options(POCO_MYSQL_OPT_RECONNECT, false);
 	else if (!options["auto-reconnect"].empty())
 		throw MySQLException("create session: specify correct auto-reconnect option (true or false) or skip it");
 
 	if (options["secure-auth"] == "true")
-		_handle.options(MYSQL_SECURE_AUTH, true);
+		_handle.options(POCO_MYSQL_SECURE_AUTH, true);
 	else if (options["secure-auth"] == "false")
-		_handle.options(MYSQL_SECURE_AUTH, false);
+		_handle.options(POCO_MYSQL_SECURE_AUTH, false);
 	else if (!options["secure-auth"].empty())
 		throw MySQLException("create session: specify correct secure-auth option (true or false) or skip it");
 
 	if (!options["character-set"].empty())
-		_handle.options(MYSQL_SET_CHARSET_NAME, options["character-set"].c_str());
+		_handle.options(POCO_MYSQL_SET_CHARSET_NAME, options["character-set"].c_str());
 
 	// Real connect
 	_handle.connect(options["host"].c_str(), 
@@ -215,13 +215,13 @@ void SessionImpl::setTransactionIsolation(Poco::UInt32 ti)
 	switch (ti)
 	{
 	case Session::TRANSACTION_READ_UNCOMMITTED:
-		isolation = MYSQL_READ_UNCOMMITTED; break;
+		isolation = POCO_MYSQL_READ_UNCOMMITTED; break;
 	case Session::TRANSACTION_READ_COMMITTED:
-		isolation = MYSQL_READ_COMMITTED; break;
+		isolation = POCO_MYSQL_READ_COMMITTED; break;
 	case Session::TRANSACTION_REPEATABLE_READ:
-		isolation = MYSQL_REPEATABLE_READ; break;
+		isolation = POCO_MYSQL_REPEATABLE_READ; break;
 	case Session::TRANSACTION_SERIALIZABLE:
-		isolation = MYSQL_SERIALIZABLE; break;
+		isolation = POCO_MYSQL_SERIALIZABLE; break;
 	default:
 		throw Poco::InvalidArgumentException("setTransactionIsolation()");
 	}
@@ -237,13 +237,13 @@ Poco::UInt32 SessionImpl::getTransactionIsolation()
 	std::string isolation;
 	getSetting("tx_isolation", isolation);
 	Poco::replaceInPlace(isolation, "-", " ");
-	if (MYSQL_READ_UNCOMMITTED == isolation)
+	if (POCO_MYSQL_READ_UNCOMMITTED == isolation)
 		return Session::TRANSACTION_READ_UNCOMMITTED;
-	else if (MYSQL_READ_COMMITTED == isolation)
+	else if (POCO_MYSQL_READ_COMMITTED == isolation)
 		return Session::TRANSACTION_READ_COMMITTED;
-	else if (MYSQL_REPEATABLE_READ == isolation)
+	else if (POCO_MYSQL_REPEATABLE_READ == isolation)
 		return Session::TRANSACTION_REPEATABLE_READ;
-	else if (MYSQL_SERIALIZABLE == isolation)
+	else if (POCO_MYSQL_SERIALIZABLE == isolation)
 		return Session::TRANSACTION_SERIALIZABLE;
 
 	throw InvalidArgumentException("getTransactionIsolation()");
@@ -271,8 +271,8 @@ void SessionImpl::close()
 
 void SessionImpl::setConnectionTimeout(std::size_t timeout)
 {
-	_handle.options(MYSQL_OPT_READ_TIMEOUT, static_cast<unsigned int>(timeout));
-	_handle.options(MYSQL_OPT_WRITE_TIMEOUT, static_cast<unsigned int>(timeout));
+	_handle.options(POCO_MYSQL_OPT_READ_TIMEOUT, static_cast<unsigned int>(timeout));
+	_handle.options(POCO_MYSQL_OPT_WRITE_TIMEOUT, static_cast<unsigned int>(timeout));
 	_timeout = timeout;
 }
 

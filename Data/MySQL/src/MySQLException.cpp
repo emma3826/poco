@@ -103,12 +103,12 @@ StatementException::StatementException(const std::string& msg) : MySQLException(
 }
 
 
-StatementException::StatementException(const std::string& text, MYSQL_STMT* h, const std::string& stmt) : MySQLException(compose(text, h, stmt))
+StatementException::StatementException(const std::string& text, POCO_MYSQL_STMT* h, const std::string& stmt) : MySQLException(compose(text, h, stmt))
 {
 }
 
 
-std::string StatementException::compose(const std::string& text, MYSQL_STMT* h, const std::string& stmt)
+std::string StatementException::compose(const std::string& text, POCO_MYSQL_STMT* h, const std::string& stmt)
 {
 	std::string str;
 	str += "[Comment]: ";

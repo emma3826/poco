@@ -36,87 +36,87 @@ Extractor::~Extractor()
 
 bool Extractor::extract(std::size_t pos, Poco::Int8& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_TINY, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_TINY, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::UInt8& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_TINY, &val, true);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_TINY, &val, true);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::Int16& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_SHORT, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_SHORT, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::UInt16& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_SHORT, &val, true);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_SHORT, &val, true);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::Int32& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONG, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONG, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::UInt32& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONG, &val, true);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONG, &val, true);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::Int64& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONGLONG, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONGLONG, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, Poco::UInt64& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONGLONG, &val, true);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONGLONG, &val, true);
 }
 
 
 #ifndef POCO_LONG_IS_64_BIT
 bool Extractor::extract(std::size_t pos, long& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONG, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONG, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, unsigned long& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_LONG, &val, true);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_LONG, &val, true);
 }
 #endif
 
 
 bool Extractor::extract(std::size_t pos, bool& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_TINY, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_TINY, &val);
 }
 
 
 bool Extractor::extract(std::size_t pos, float& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_FLOAT, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_FLOAT, &val);
 }
 
 	
 bool Extractor::extract(std::size_t pos, double& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_DOUBLE, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_DOUBLE, &val);
 }
 
 	
 bool Extractor::extract(std::size_t pos, char& val)
 {
-	return realExtractFixed(pos, MYSQL_TYPE_TINY, &val);
+	return realExtractFixed(pos, POCO_MYSQL_TYPE_TINY, &val);
 }
 
 	
@@ -172,9 +172,9 @@ bool Extractor::extract(std::size_t pos, Poco::Data::CLOB& val)
 
 bool Extractor::extract(std::size_t pos, DateTime& val)
 {
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
-	if (!realExtractFixed(pos, MYSQL_TYPE_DATETIME, &mt))
+	if (!realExtractFixed(pos, POCO_MYSQL_TYPE_DATETIME, &mt))
 		return false;
 
 	val.assign(mt.year, mt.month, mt.day, mt.hour, mt.minute, mt.second, mt.second_part, 0);
@@ -184,9 +184,9 @@ bool Extractor::extract(std::size_t pos, DateTime& val)
 
 bool Extractor::extract(std::size_t pos, Date& val)
 {
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
-	if (!realExtractFixed(pos, MYSQL_TYPE_DATE, &mt))
+	if (!realExtractFixed(pos, POCO_MYSQL_TYPE_DATE, &mt))
 		return false;
 
 	val.assign(mt.year, mt.month, mt.day);
@@ -196,9 +196,9 @@ bool Extractor::extract(std::size_t pos, Date& val)
 
 bool Extractor::extract(std::size_t pos, Time& val)
 {
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
-	if (!realExtractFixed(pos, MYSQL_TYPE_TIME, &mt))
+	if (!realExtractFixed(pos, POCO_MYSQL_TYPE_TIME, &mt))
 		return false;
 
 	val.assign(mt.hour, mt.minute, mt.second);
@@ -239,7 +239,7 @@ void Extractor::reset()
 
 bool Extractor::realExtractFixed(std::size_t pos, enum_field_types type, void* buffer, bool isUnsigned)
 {
-	MYSQL_BIND bind = {0};
+	POCO_MYSQL_BIND bind = {0};
 	my_bool isNull = 0;
 
 	bind.is_null	   = &isNull;

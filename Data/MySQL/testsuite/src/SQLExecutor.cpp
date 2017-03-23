@@ -164,7 +164,7 @@ void SQLExecutor::bareboneMySQLTest(const char* host, const char* user, const ch
 	MYSQL* tmp = mysql_real_connect(hsession, host, user, pwd, db, port, 0, 0);
 	assert(tmp == hsession);
 	
-	MYSQL_STMT* hstmt = mysql_stmt_init(hsession);
+	POCO_MYSQL_STMT* hstmt = mysql_stmt_init(hsession);
 	assert(hstmt != 0);
 	
 	std::string sql = "DROP TABLE Test";
@@ -185,25 +185,25 @@ void SQLExecutor::bareboneMySQLTest(const char* host, const char* user, const ch
 	int fourth = 4;
 	float fifth = 1.5;
 
-	MYSQL_BIND bind_param[5] = {{0}};
+	POCO_MYSQL_BIND bind_param[5] = {{0}};
 
 	bind_param[0].buffer		= const_cast<char*>(str[0].c_str());
 	bind_param[0].buffer_length = static_cast<unsigned long>(str[0].length());
-	bind_param[0].buffer_type   = MYSQL_TYPE_STRING;
+	bind_param[0].buffer_type   = POCO_MYSQL_TYPE_STRING;
 
 	bind_param[1].buffer		= const_cast<char*>(str[1].c_str());
 	bind_param[1].buffer_length = static_cast<unsigned long>(str[1].length());
-	bind_param[1].buffer_type   = MYSQL_TYPE_STRING;
+	bind_param[1].buffer_type   = POCO_MYSQL_TYPE_STRING;
 
 	bind_param[2].buffer		= const_cast<char*>(str[2].c_str());
 	bind_param[2].buffer_length = static_cast<unsigned long>(str[2].length());
-	bind_param[2].buffer_type   = MYSQL_TYPE_STRING;
+	bind_param[2].buffer_type   = POCO_MYSQL_TYPE_STRING;
 
 	bind_param[3].buffer		= &fourth;
-	bind_param[3].buffer_type   = MYSQL_TYPE_LONG;
+	bind_param[3].buffer_type   = POCO_MYSQL_TYPE_LONG;
 
 	bind_param[4].buffer		= &fifth;
-	bind_param[4].buffer_type   = MYSQL_TYPE_FLOAT;
+	bind_param[4].buffer_type   = POCO_MYSQL_TYPE_FLOAT;
 
 	rc = mysql_stmt_bind_param(hstmt, bind_param);
 	assert (rc == 0);
@@ -220,29 +220,29 @@ void SQLExecutor::bareboneMySQLTest(const char* host, const char* user, const ch
 	fourth = 0;
 	fifth = 0.0f;
 
-	MYSQL_BIND bind_result[5] = {{0}};
+	POCO_MYSQL_BIND bind_result[5] = {{0}};
 	
 	bind_result[0].buffer		= chr[0];
 	bind_result[0].buffer_length = sizeof(chr[0]);
-	bind_result[0].buffer_type   = MYSQL_TYPE_STRING;
+	bind_result[0].buffer_type   = POCO_MYSQL_TYPE_STRING;
 	bind_result[0].length		= &lengths[0];
 
 	bind_result[1].buffer		= chr[1];
 	bind_result[1].buffer_length = sizeof(chr[1]);
-	bind_result[1].buffer_type   = MYSQL_TYPE_STRING;
+	bind_result[1].buffer_type   = POCO_MYSQL_TYPE_STRING;
 	bind_result[1].length		= &lengths[1];
 
 	bind_result[2].buffer		= chr[2];
 	bind_result[2].buffer_length = sizeof(chr[2]);
-	bind_result[2].buffer_type   = MYSQL_TYPE_STRING;
+	bind_result[2].buffer_type   = POCO_MYSQL_TYPE_STRING;
 	bind_result[2].length		= &lengths[2];
 
 	bind_result[3].buffer		= &fourth;
-	bind_result[3].buffer_type   = MYSQL_TYPE_LONG;
+	bind_result[3].buffer_type   = POCO_MYSQL_TYPE_LONG;
 	bind_result[3].length		= &lengths[3];
 
 	bind_result[4].buffer		= &fifth;
-	bind_result[4].buffer_type   = MYSQL_TYPE_FLOAT;
+	bind_result[4].buffer_type   = POCO_MYSQL_TYPE_FLOAT;
 	bind_result[4].length		= &lengths[4];
 
 	rc = mysql_stmt_bind_result(hstmt, bind_result);

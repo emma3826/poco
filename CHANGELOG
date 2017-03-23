@@ -148,7 +148,7 @@ Release 1.5.3 (2014-06-30)
 - fixed GH# 350: Memory leak in Data/ODBC with BLOB
 - Correctly set MySQL time_type for Poco::Data::Date.
 - fixed GH #352: Removed redundant #includes and fixed spelling mistakes. 
-- fixed setting of MYSQL_BIND is_unsigned value.
+- fixed setting of POCO_MYSQL_BIND is_unsigned value.
 - fixed GH #360: CMakeLists foundation: add Clock.cpp in the list of source files
 - Add extern "C" around <net/if.h> on HPUX platform.
 - added runtests.sh
@@ -196,7 +196,7 @@ Release 1.5.3 (2014-06-30)
 - added SevenZip library (Guenter Obiltschnig)
 - fixed GH #442: Use correct prefix length field of Windows IP_ADAPTER_PREFIX structure
 - improved GH #328: NetworkInterface on Windows XP
-- fixed GH #154 Add support for MYSQL_TYPE_NEWDECIMAL to Poco::Data::MySQL
+- fixed GH #154 Add support for POCO_MYSQL_TYPE_NEWDECIMAL to Poco::Data::MySQL
 - fixed GH #290: Unicode support
 - fixed GH #318: Logger local time doesn't automatically account for DST
 - fixed GH #363: DateTimeParser tryParse/parse
@@ -254,7 +254,7 @@ Release 1.5.2 (2013-09-16)
 - removed naked pointers from Data interfaces
 - fixed GH #82: name conflict in Data::Keywords::bind
 - fixed GH #157: MySQL: cannot bind to 'long' data type on Windows/Visual C++
-- fixed GH #158: MySQL: MYSQL_BIND 'is_unsigned' member is not set
+- fixed GH #158: MySQL: POCO_MYSQL_BIND 'is_unsigned' member is not set
 - fixed GH #160: MultipartReader ignores first part, if preamble is missing
 - fixed GH #156: Possible buffer overrun in Foundation/EventLogChannel
 - XML: fixed an issue with parsing a memory buffer > 2 GB
@@ -293,7 +293,7 @@ Release 1.5.2 (2013-09-16)
   Array::Ptr and empty
 - fixed GH #175: HTMLForm does not read URL parameters on POST or PUT
 - added GH #187: MySQL: allow access to the underlying connection handle
-- added GH #186: MySQL: support for MYSQL_SECURE_AUTH
+- added GH #186: MySQL: support for POCO_MYSQL_SECURE_AUTH
 - fixed GH #174: MySQL: 4GB allocated when reading any largetext or largeblob field
 - fixed a potential memory leak in Poco::Net::HTTPClientSession if it is misused 
   (e.g., sendRequest() is sent two times in a row without an intermediate call to 

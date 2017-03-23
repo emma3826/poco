@@ -29,7 +29,7 @@ namespace Data {
 namespace MySQL {
 
 
-std::string Connector::KEY(POCO_DATA_MYSQL_CONNECTOR_NAME);
+std::string Connector::KEY(POCO_DATA_POCO_MYSQL_CONNECTOR_NAME);
 
 
 Connector::Connector()
@@ -43,7 +43,7 @@ Connector::~Connector()
 
 const std::string& Connector::name() const
 {
-	static const std::string n(POCO_DATA_MYSQL_CONNECTOR_NAME);
+	static const std::string n(POCO_DATA_POCO_MYSQL_CONNECTOR_NAME);
 	return n;
 }
 
@@ -67,7 +67,7 @@ void Connector::registerConnector()
 
 void Connector::unregisterConnector()
 {
-	Poco::Data::SessionFactory::instance().remove(POCO_DATA_MYSQL_CONNECTOR_NAME);
+	Poco::Data::SessionFactory::instance().remove(POCO_DATA_POCO_MYSQL_CONNECTOR_NAME);
 	mysql_library_end();
 }
 

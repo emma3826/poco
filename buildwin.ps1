@@ -107,9 +107,9 @@ function Set-Environment
 
   if ($mysql_base -ne '')
   {
-    $Env:MYSQL_DIR     = "$mysql_base"
-    $Env:MYSQL_INCLUDE = "$Env:MYSQL_DIR\include"
-    $Env:MYSQL_LIB     = "$Env:MYSQL_DIR\lib"
+    $Env:POCO_MYSQL_DIR     = "$mysql_base"
+    $Env:POCO_MYSQL_INCLUDE = "$Env:POCO_MYSQL_DIR\include"
+    $Env:POCO_MYSQL_LIB     = "$Env:POCO_MYSQL_DIR\lib"
     Add-Env-Var "MYSQL" "INCLUDE"
     Add-Env-Var "MYSQL" "LIB"
   }

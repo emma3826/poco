@@ -63,7 +63,7 @@ void StatementExecutor::prepare(const std::string& query)
 }
 
 
-void StatementExecutor::bindParams(MYSQL_BIND* params, std::size_t count)
+void StatementExecutor::bindParams(POCO_MYSQL_BIND* params, std::size_t count)
 {
 	if (_state < STMT_COMPILED)
 		throw StatementException("Statement is not compiled yet");
@@ -78,7 +78,7 @@ void StatementExecutor::bindParams(MYSQL_BIND* params, std::size_t count)
 }
 
 
-void StatementExecutor::bindResult(MYSQL_BIND* result)
+void StatementExecutor::bindResult(POCO_MYSQL_BIND* result)
 {
 	if (_state < STMT_COMPILED)
 		throw StatementException("Statement is not compiled yet");
@@ -112,21 +112,21 @@ bool StatementExecutor::fetch()
 	int res = mysql_stmt_fetch(_pHandle);
 
 	// we have specified zero buffers for BLOBs, so DATA_TRUNCATED is normal in this case
-	if ((res != 0) && (res != MYSQL_NO_DATA) && (res != MYSQL_DATA_TRUNCATED)) 
+	if ((res != 0) && (res != POCO_MYSQL_NO_DATA) && (res != POCO_MYSQL_DATA_TRUNCATED)) 
 		throw StatementException("mysql_stmt_fetch error", _pHandle, _query);
 
-	return (res == 0) || (res == MYSQL_DATA_TRUNCATED);
+	return (res == 0) || (res == POCO_MYSQL_DATA_TRUNCATED);
 }
 
 
-bool StatementExecutor::fetchColumn(std::size_t n, MYSQL_BIND *bind)
+bool StatementExecutor::fetchColumn(std::size_t n, POCO_MYSQL_BIND *bind)
 {
 	if (_state < STMT_EXECUTED)
 		throw StatementException("Statement is not executed yet");
 
 	int res = mysql_stmt_fetch_column(_pHandle, bind, static_cast<unsigned int>(n), 0);
 
-	if ((res != 0) && (res != MYSQL_NO_DATA))
+	if ((res != 0) && (res != POCO_MYSQL_NO_DATA))
 		throw StatementException(Poco::format("mysql_stmt_fetch_column(%z) error", n), _pHandle, _query);
 
 	return (res == 0);

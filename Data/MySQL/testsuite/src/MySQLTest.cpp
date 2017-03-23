@@ -44,18 +44,18 @@ Poco::SharedPtr<SQLExecutor> MySQLTest::_pExecutor = 0;
 
 //
 // Parameters for barebone-test
-#define MYSQL_USER "root"
-#define MYSQL_PWD  "poco"
-#define MYSQL_HOST "localhost"
-#define MYSQL_PORT 3306
-#define MYSQL_DB   "pocotestdb"
+#define POCO_MYSQL_USER "root"
+#define POCO_MYSQL_PWD  "poco"
+#define POCO_MYSQL_HOST "localhost"
+#define POCO_MYSQL_PORT 3306
+#define POCO_MYSQL_DB   "pocotestdb"
 
 //
 // Connection string
-std::string MySQLTest::_dbConnString = "host=" MYSQL_HOST
-	";user=" MYSQL_USER
-	";password=" MYSQL_PWD
-	";db=" MYSQL_DB
+std::string MySQLTest::_dbConnString = "host=" POCO_MYSQL_HOST
+	";user=" POCO_MYSQL_USER
+	";password=" POCO_MYSQL_PWD
+	";db=" POCO_MYSQL_DB
 	";compress=true"
 	";auto-reconnect=true"
 	";secure-auth=true";
@@ -84,9 +84,9 @@ void MySQLTest::dbInfo(Session& session)
 
 void MySQLTest::connectNoDB()
 {
-	std::string dbConnString = "host=" MYSQL_HOST
-		";user=" MYSQL_USER
-		";password=" MYSQL_PWD
+	std::string dbConnString = "host=" POCO_MYSQL_HOST
+		";user=" POCO_MYSQL_USER
+		";password=" POCO_MYSQL_PWD
 		";compress=true;auto-reconnect=true";
 
 	try
@@ -94,7 +94,7 @@ void MySQLTest::connectNoDB()
 		Session session(MySQL::Connector::KEY, dbConnString);
 		std::cout << "Connected to [" << "MySQL" << "] without database." << std::endl;
 		dbInfo(session);
-		session << "CREATE DATABASE IF NOT EXISTS " MYSQL_DB ";", now;
+		session << "CREATE DATABASE IF NOT EXISTS " POCO_MYSQL_DB ";", now;
 		std::cout << "Disconnecting ..." << std::endl;
 		session.close();
 		std::cout << "Disconnected." << std::endl;
@@ -117,7 +117,7 @@ void MySQLTest::testBareboneMySQL()
 		"Fourth INTEGER,"
 		"Fifth FLOAT)";
 
-	_pExecutor->bareboneMySQLTest(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB, MYSQL_PORT, tableCreateString.c_str());
+	_pExecutor->bareboneMySQLTest(POCO_MYSQL_HOST, POCO_MYSQL_USER, POCO_MYSQL_PWD, POCO_MYSQL_DB, POCO_MYSQL_PORT, tableCreateString.c_str());
 }
 
 

@@ -227,7 +227,7 @@ public:
 	std::size_t size() const;
 		/// Return count of binded parameters
 
-	MYSQL_BIND* getBindArray() const;
+	POCO_MYSQL_BIND* getBindArray() const;
 		/// Return array
 
 	//void updateDates();
@@ -249,8 +249,8 @@ private:
 
 private:
 
-	std::vector<MYSQL_BIND> _bindArray;
-	std::vector<MYSQL_TIME*> _dates;
+	std::vector<POCO_MYSQL_BIND> _bindArray;
+	std::vector<POCO_MYSQL_TIME*> _dates;
 };
 
 

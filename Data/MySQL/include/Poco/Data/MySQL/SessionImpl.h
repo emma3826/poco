@@ -37,10 +37,10 @@ class MySQL_API SessionImpl: public Poco::Data::AbstractSessionImpl<SessionImpl>
 	/// Implements SessionImpl interface
 {
 public:
-	static const std::string MYSQL_READ_UNCOMMITTED;
-	static const std::string MYSQL_READ_COMMITTED;
-	static const std::string MYSQL_REPEATABLE_READ;
-	static const std::string MYSQL_SERIALIZABLE;
+	static const std::string POCO_MYSQL_READ_UNCOMMITTED;
+	static const std::string POCO_MYSQL_READ_COMMITTED;
+	static const std::string POCO_MYSQL_REPEATABLE_READ;
+	static const std::string POCO_MYSQL_SERIALIZABLE;
 
 	SessionImpl(const std::string& connectionString,
 		std::size_t loginTimeout = LOGIN_TIMEOUT_DEFAULT);
@@ -127,7 +127,7 @@ public:
 private:
 
 	template <typename T>
-	inline T& getValue(MYSQL_BIND* pResult, T& val)
+	inline T& getValue(POCO_MYSQL_BIND* pResult, T& val)
 	{
 		return val = *((T*) pResult->buffer);
 	}
@@ -149,7 +149,7 @@ private:
 			throw InvalidArgumentException("No data returned.");
 
 		ex.execute(); ex.fetch();
-		MYSQL_BIND* pResult = metadata.row();
+		POCO_MYSQL_BIND* pResult = metadata.row();
 		return getValue<T>(pResult, val);
 	}
 
@@ -219,7 +219,7 @@ inline std::size_t SessionImpl::getConnectionTimeout()
 
 
 template <>
-inline std::string& SessionImpl::getValue(MYSQL_BIND* pResult, std::string& val)
+inline std::string& SessionImpl::getValue(POCO_MYSQL_BIND* pResult, std::string& val)
 {
 	val.assign((char*) pResult->buffer, pResult->buffer_length);
 	return val;

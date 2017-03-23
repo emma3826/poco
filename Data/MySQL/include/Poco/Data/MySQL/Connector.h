@@ -27,7 +27,7 @@
 // Note: to avoid static (de)initialization problems,
 // during connector automatic (un)registration, it is 
 // best to have this as a macro.
-#define POCO_DATA_MYSQL_CONNECTOR_NAME "mysql"
+#define POCO_DATA_POCO_MYSQL_CONNECTOR_NAME "mysql"
 
 
 namespace Poco {
@@ -102,21 +102,21 @@ struct MySQL_API MySQLConnectorRegistrator
 		extern "C" const struct MySQL_API MySQLConnectorRegistrator pocoMySQLConnectorRegistrator;
 		#if defined(MySQL_EXPORTS)
 			#if defined(_WIN64)
-				#define POCO_DATA_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/export:"#s))
+				#define POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/export:"#s))
 			#elif defined(_WIN32)
-				#define POCO_DATA_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/export:_"#s))
+				#define POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/export:_"#s))
 			#endif
 		#else  // !MySQL_EXPORTS
 			#if defined(_WIN64)
-				#define POCO_DATA_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/include:"#s))
+				#define POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/include:"#s))
 			#elif defined(_WIN32)
-				#define POCO_DATA_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/include:_"#s))
+				#define POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(s) __pragma(comment (linker, "/include:_"#s))
 			#endif
 		#endif // MySQL_EXPORTS
 	#else // !POCO_OS_FAMILY_WINDOWS
-			#define POCO_DATA_MYSQL_FORCE_SYMBOL(s) extern "C" const struct MySQLConnectorRegistrator s;
+			#define POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(s) extern "C" const struct MySQLConnectorRegistrator s;
 	#endif // POCO_OS_FAMILY_WINDOWS
-	POCO_DATA_MYSQL_FORCE_SYMBOL(pocoMySQLConnectorRegistrator)
+	POCO_DATA_POCO_MYSQL_FORCE_SYMBOL(pocoMySQLConnectorRegistrator)
 #endif // POCO_NO_AUTOMATIC_LIB_INIT
 
 // 

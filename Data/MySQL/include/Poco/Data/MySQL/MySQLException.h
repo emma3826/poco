@@ -26,7 +26,7 @@
 
 
 typedef struct st_mysql MYSQL;
-typedef struct st_mysql_stmt MYSQL_STMT;
+typedef struct st_mysql_stmt POCO_MYSQL_STMT;
 
 
 namespace Poco {
@@ -113,12 +113,12 @@ public:
 	StatementException(const std::string& msg);
 		/// Creates StatementException from string.
 
-	StatementException(const std::string& text, MYSQL_STMT* h, const std::string& stmt = "");
+	StatementException(const std::string& text, POCO_MYSQL_STMT* h, const std::string& stmt = "");
 		/// Creates StatementException from string and handle.
 
 private:
 
-	static std::string compose(const std::string& text, MYSQL_STMT* h, const std::string& stmt);
+	static std::string compose(const std::string& text, POCO_MYSQL_STMT* h, const std::string& stmt);
 };
 
 

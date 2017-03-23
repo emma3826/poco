@@ -49,10 +49,10 @@ public:
 	void prepare(const std::string& query);
 		/// Prepares the statement for execution.
 
-	void bindParams(MYSQL_BIND* params, std::size_t count);
+	void bindParams(POCO_MYSQL_BIND* params, std::size_t count);
 		/// Binds the params.
 
-	void bindResult(MYSQL_BIND* result);
+	void bindResult(POCO_MYSQL_BIND* result);
 		/// Binds result.
 
 	void execute();
@@ -61,12 +61,12 @@ public:
 	bool fetch();
 		/// Fetches the data.
 
-	bool fetchColumn(std::size_t n, MYSQL_BIND *bind);
+	bool fetchColumn(std::size_t n, POCO_MYSQL_BIND *bind);
 		/// Fetches the column.
 
 	int getAffectedRowCount() const;
 		
-	operator MYSQL_STMT* ();
+	operator POCO_MYSQL_STMT* ();
 		/// Cast operator to native handle type.
 
 private:
@@ -76,7 +76,7 @@ private:
 
 private:
 	MYSQL*      _pSessionHandle;
-	MYSQL_STMT* _pHandle;
+	POCO_MYSQL_STMT* _pHandle;
 	int         _state;
 	int         _affectedRowCount;
 	std::string _query;
@@ -87,7 +87,7 @@ private:
 // inlines
 //
 
-inline StatementExecutor::operator MYSQL_STMT* ()
+inline StatementExecutor::operator POCO_MYSQL_STMT* ()
 {
 	return _pHandle;
 }

@@ -35,7 +35,7 @@ public:
 	void reset();
 		/// Resets the metadata.
 
-	void init(MYSQL_STMT* stmt);
+	void init(POCO_MYSQL_STMT* stmt);
 		/// Initializes the metadata.
 
 	std::size_t columnsReturned() const;
@@ -44,7 +44,7 @@ public:
 	const MetaColumn& metaColumn(std::size_t pos) const;
 		/// Returns the reference to the specified metacolumn.
 
-	MYSQL_BIND* row();
+	POCO_MYSQL_BIND* row();
 		/// Returns pointer to native row.
 
 	std::size_t length(std::size_t pos) const;
@@ -58,7 +58,7 @@ public:
 
 private:
 	std::vector<MetaColumn>    _columns;
-	std::vector<MYSQL_BIND>    _row;
+	std::vector<POCO_MYSQL_BIND>    _row;
 	std::vector<char>          _buffer;
 	std::vector<unsigned long> _lengths;
 	std::vector<my_bool>       _isNull;

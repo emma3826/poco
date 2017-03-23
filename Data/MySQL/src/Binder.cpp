@@ -29,7 +29,7 @@ Binder::Binder()
 
 Binder::~Binder()
 {
-	for (std::vector<MYSQL_TIME*>::iterator it = _dates.begin(); it != _dates.end(); ++it)
+	for (std::vector<POCO_MYSQL_TIME*>::iterator it = _dates.begin(); it != _dates.end(); ++it)
 	{
 		delete *it;
 		*it = 0;
@@ -40,56 +40,56 @@ Binder::~Binder()
 void Binder::bind(std::size_t pos, const Poco::Int8& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_TINY, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_TINY, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::UInt8& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_TINY, &val, 0, true);
+	realBind(pos, POCO_MYSQL_TYPE_TINY, &val, 0, true);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::Int16& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_SHORT, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_SHORT, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::UInt16& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_SHORT, &val, 0, true);
+	realBind(pos, POCO_MYSQL_TYPE_SHORT, &val, 0, true);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::Int32& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONG, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_LONG, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::UInt32& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONG, &val, 0, true);
+	realBind(pos, POCO_MYSQL_TYPE_LONG, &val, 0, true);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::Int64& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONGLONG, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_LONGLONG, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::UInt64& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONGLONG, &val, 0, true);
+	realBind(pos, POCO_MYSQL_TYPE_LONGLONG, &val, 0, true);
 }
 
 
@@ -98,14 +98,14 @@ void Binder::bind(std::size_t pos, const Poco::UInt64& val, Direction dir)
 void Binder::bind(std::size_t pos, const long& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONG, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_LONG, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const unsigned long& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_LONG, &val, 0, true);
+	realBind(pos, POCO_MYSQL_TYPE_LONG, &val, 0, true);
 }
 
 #endif // POCO_LONG_IS_64_BIT
@@ -114,56 +114,56 @@ void Binder::bind(std::size_t pos, const unsigned long& val, Direction dir)
 void Binder::bind(std::size_t pos, const bool& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_TINY, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_TINY, &val, 0);
 }
 
 	
 void Binder::bind(std::size_t pos, const float& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_FLOAT, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_FLOAT, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const double& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_DOUBLE, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_DOUBLE, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const char& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_TINY, &val, 0);
+	realBind(pos, POCO_MYSQL_TYPE_TINY, &val, 0);
 }
 
 
 void Binder::bind(std::size_t pos, const std::string& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_STRING, val.c_str(), static_cast<int>(val.length()));
+	realBind(pos, POCO_MYSQL_TYPE_STRING, val.c_str(), static_cast<int>(val.length()));
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::Data::BLOB& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_BLOB, val.rawContent(), static_cast<int>(val.size()));
+	realBind(pos, POCO_MYSQL_TYPE_BLOB, val.rawContent(), static_cast<int>(val.size()));
 }
 
 
 void Binder::bind(std::size_t pos, const Poco::Data::CLOB& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_BLOB, val.rawContent(), static_cast<int>(val.size()));
+	realBind(pos, POCO_MYSQL_TYPE_BLOB, val.rawContent(), static_cast<int>(val.size()));
 }
 
 
 void Binder::bind(std::size_t pos, const DateTime& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
 	mt.year = val.year();
 	mt.month = val.month();
@@ -173,52 +173,52 @@ void Binder::bind(std::size_t pos, const DateTime& val, Direction dir)
 	mt.second = val.second();
 	mt.second_part = val.millisecond();
 
-	mt.time_type  = MYSQL_TIMESTAMP_DATETIME;
+	mt.time_type  = POCO_MYSQL_TIMESTAMP_DATETIME;
 
-	_dates.push_back(new MYSQL_TIME(mt));
+	_dates.push_back(new POCO_MYSQL_TIME(mt));
 
-	realBind(pos, MYSQL_TYPE_DATETIME, _dates.back(), sizeof(MYSQL_TIME));
+	realBind(pos, POCO_MYSQL_TYPE_DATETIME, _dates.back(), sizeof(POCO_MYSQL_TIME));
 }
 
 
 void Binder::bind(std::size_t pos, const Date& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
 	mt.year  = val.year();
 	mt.month = val.month();
 	mt.day   = val.day();
 
-	mt.time_type = MYSQL_TIMESTAMP_DATE;
+	mt.time_type = POCO_MYSQL_TIMESTAMP_DATE;
 
-	_dates.push_back(new MYSQL_TIME(mt));
+	_dates.push_back(new POCO_MYSQL_TIME(mt));
 	
-	realBind(pos, MYSQL_TYPE_DATE, _dates.back(), sizeof(MYSQL_TIME));
+	realBind(pos, POCO_MYSQL_TYPE_DATE, _dates.back(), sizeof(POCO_MYSQL_TIME));
 }
 
 
 void Binder::bind(std::size_t pos, const Time& val, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	MYSQL_TIME mt = {0};
+	POCO_MYSQL_TIME mt = {0};
 
 	mt.hour   = val.hour();
 	mt.minute = val.minute();
 	mt.second = val.second();
 
-	mt.time_type = MYSQL_TIMESTAMP_TIME;
+	mt.time_type = POCO_MYSQL_TIMESTAMP_TIME;
 	
-	_dates.push_back(new MYSQL_TIME(mt));
+	_dates.push_back(new POCO_MYSQL_TIME(mt));
 	
-	realBind(pos, MYSQL_TYPE_TIME, _dates.back(), sizeof(MYSQL_TIME));
+	realBind(pos, POCO_MYSQL_TYPE_TIME, _dates.back(), sizeof(POCO_MYSQL_TIME));
 }
 
 
 void Binder::bind(std::size_t pos, const NullData&, Direction dir)
 {
 	poco_assert(dir == PD_IN);
-	realBind(pos, MYSQL_TYPE_NULL, 0, 0);
+	realBind(pos, POCO_MYSQL_TYPE_NULL, 0, 0);
 }
 
 
@@ -228,14 +228,14 @@ std::size_t Binder::size() const
 }
 
 
-MYSQL_BIND* Binder::getBindArray() const
+POCO_MYSQL_BIND* Binder::getBindArray() const
 {
 	if (_bindArray.size() == 0)
 	{
 		return 0;
 	}
 
-	return const_cast<MYSQL_BIND*>(&_bindArray[0]);
+	return const_cast<POCO_MYSQL_BIND*>(&_bindArray[0]);
 }
 
 
@@ -245,12 +245,12 @@ MYSQL_BIND* Binder::getBindArray() const
 	{
 		switch (_dates[i].mt.time_type)
 		{
-		case MYSQL_TIMESTAMP_DATE:
+		case POCO_MYSQL_TIMESTAMP_DATE:
 			_dates[i].mt.year  = _dates[i].link.date->year();
 			_dates[i].mt.month = _dates[i].link.date->month();
 			_dates[i].mt.day   = _dates[i].link.date->day();
 			break;
-		case MYSQL_TIMESTAMP_DATETIME:
+		case POCO_MYSQL_TIMESTAMP_DATETIME:
 			_dates[i].mt.year		= _dates[i].link.dateTime->year();
 			_dates[i].mt.month	   = _dates[i].link.dateTime->month();
 			_dates[i].mt.day		 = _dates[i].link.dateTime->day();
@@ -259,7 +259,7 @@ MYSQL_BIND* Binder::getBindArray() const
 			_dates[i].mt.second	  = _dates[i].link.dateTime->second();
 			_dates[i].mt.second_part = _dates[i].link.dateTime->millisecond();
 			break;
-		case MYSQL_TIMESTAMP_TIME:
+		case POCO_MYSQL_TIMESTAMP_TIME:
 			_dates[i].mt.hour   = _dates[i].link.time->hour();
 			_dates[i].mt.minute = _dates[i].link.time->minute();
 			_dates[i].mt.second = _dates[i].link.time->second();
@@ -281,10 +281,10 @@ void Binder::realBind(std::size_t pos, enum_field_types type, const void* buffer
 		std::size_t s = static_cast<std::size_t>(_bindArray.size());
 		_bindArray.resize(pos + 1);
 
-		std::memset(&_bindArray[s], 0, sizeof(MYSQL_BIND) * (_bindArray.size() - s));
+		std::memset(&_bindArray[s], 0, sizeof(POCO_MYSQL_BIND) * (_bindArray.size() - s));
 	}
 
-	MYSQL_BIND b = {0};
+	POCO_MYSQL_BIND b = {0};
 
 	b.buffer_type   = type;
 	b.buffer  = const_cast<void*>(buffer);

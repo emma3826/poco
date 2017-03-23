@@ -3,15 +3,15 @@ set(POCO_LIBNAME "Poco${LIBNAME}")
 
 # Sources
 file(GLOB SRCS_G "src/*.cpp")
-POCO_SOURCES_AUTO( MYSQL_SRCS ${SRCS_G})
+POCO_SOURCES_AUTO( POCO_MYSQL_SRCS ${SRCS_G})
 
 # Headers
 file(GLOB_RECURSE HDRS_G "include/*.h" )
-POCO_HEADERS_AUTO( MYSQL_SRCS ${HDRS_G})
+POCO_HEADERS_AUTO( POCO_MYSQL_SRCS ${HDRS_G})
 
 add_definitions(-DTHREADSAFE -DNO_TCL)
 
-add_library( "${LIBNAME}" ${LIB_MODE} ${MYSQL_SRCS} )
+add_library( "${LIBNAME}" ${LIB_MODE} ${POCO_MYSQL_SRCS} )
 add_library( "${POCO_LIBNAME}" ALIAS "${LIBNAME}")
 set_target_properties( "${LIBNAME}"
     PROPERTIES
@@ -20,7 +20,7 @@ set_target_properties( "${LIBNAME}"
     DEFINE_SYMBOL MySQL_EXPORTS
     )
 
-target_link_libraries( "${LIBNAME}" Foundation Data ${MYSQL_LIB})
+target_link_libraries( "${LIBNAME}" Foundation Data ${POCO_MYSQL_LIB})
 target_include_directories( "${LIBNAME}"
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

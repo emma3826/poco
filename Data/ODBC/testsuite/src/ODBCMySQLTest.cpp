@@ -40,25 +40,25 @@ using Poco::Tuple;
 using Poco::NotFoundException;
 
 
-#define MYSQL_ODBC_DRIVER "MySQL ODBC 5.2 Driver"
-#define MYSQL_DSN "PocoDataMySQLTest"
-#define MYSQL_SERVER POCO_ODBC_TEST_DATABASE_SERVER
-#define MYSQL_DB "test"
-#define MYSQL_UID "root"
-#define MYSQL_PWD "poco"
+#define POCO_MYSQL_ODBC_DRIVER "MySQL ODBC 5.2 Driver"
+#define POCO_MYSQL_DSN "PocoDataMySQLTest"
+#define POCO_MYSQL_SERVER POCO_ODBC_TEST_DATABASE_SERVER
+#define POCO_MYSQL_DB "test"
+#define POCO_MYSQL_UID "root"
+#define POCO_MYSQL_PWD "poco"
 
 
 ODBCTest::SessionPtr ODBCMySQLTest::_pSession;
 ODBCTest::ExecPtr    ODBCMySQLTest::_pExecutor;
-std::string          ODBCMySQLTest::_driver = MYSQL_ODBC_DRIVER;
-std::string          ODBCMySQLTest::_dsn = MYSQL_DSN;
-std::string          ODBCMySQLTest::_uid = MYSQL_UID;
-std::string          ODBCMySQLTest::_pwd = MYSQL_PWD;
-std::string          ODBCMySQLTest::_connectString = "DRIVER={" MYSQL_ODBC_DRIVER "};"
-	"DATABASE=" MYSQL_DB ";"
-	"SERVER=" MYSQL_SERVER ";"
-	"UID=" MYSQL_UID ";"
-	"PWD=" MYSQL_PWD ";";
+std::string          ODBCMySQLTest::_driver = POCO_MYSQL_ODBC_DRIVER;
+std::string          ODBCMySQLTest::_dsn = POCO_MYSQL_DSN;
+std::string          ODBCMySQLTest::_uid = POCO_MYSQL_UID;
+std::string          ODBCMySQLTest::_pwd = POCO_MYSQL_PWD;
+std::string          ODBCMySQLTest::_connectString = "DRIVER={" POCO_MYSQL_ODBC_DRIVER "};"
+	"DATABASE=" POCO_MYSQL_DB ";"
+	"SERVER=" POCO_MYSQL_SERVER ";"
+	"UID=" POCO_MYSQL_UID ";"
+	"PWD=" POCO_MYSQL_PWD ";";
 
 
 ODBCMySQLTest::ODBCMySQLTest(const std::string& name): 

@@ -25,7 +25,7 @@ namespace
 	{
 	public:
 
-		explicit ResultMetadataHandle(MYSQL_STMT* stmt)
+		explicit ResultMetadataHandle(POCO_MYSQL_STMT* stmt)
 		{
 			h = mysql_stmt_result_metadata(stmt);
 		}
@@ -38,42 +38,42 @@ namespace
 			}
 		}
 
-		operator MYSQL_RES* ()
+		operator POCO_MYSQL_RES* ()
 		{
 			return h;
 		}
 
 	private:
 
-		MYSQL_RES* h;
+		POCO_MYSQL_RES* h;
 	};
 
-	std::size_t fieldSize(const MYSQL_FIELD& field)
+	std::size_t fieldSize(const POCO_MYSQL_FIELD& field)
 		/// Convert field MySQL-type and field MySQL-length to actual field length
 	{
 		switch (field.type)
 		{
-		case MYSQL_TYPE_TINY:     return sizeof(char);
-		case MYSQL_TYPE_SHORT:    return sizeof(short);
-		case MYSQL_TYPE_INT24:
-		case MYSQL_TYPE_LONG:     return sizeof(Poco::Int32);
-		case MYSQL_TYPE_FLOAT:    return sizeof(float);
-		case MYSQL_TYPE_DOUBLE:   return sizeof(double);
-		case MYSQL_TYPE_LONGLONG: return sizeof(Poco::Int64);
+		case POCO_MYSQL_TYPE_TINY:     return sizeof(char);
+		case POCO_MYSQL_TYPE_SHORT:    return sizeof(short);
+		case POCO_MYSQL_TYPE_INT24:
+		case POCO_MYSQL_TYPE_LONG:     return sizeof(Poco::Int32);
+		case POCO_MYSQL_TYPE_FLOAT:    return sizeof(float);
+		case POCO_MYSQL_TYPE_DOUBLE:   return sizeof(double);
+		case POCO_MYSQL_TYPE_LONGLONG: return sizeof(Poco::Int64);
 
-		case MYSQL_TYPE_DATE:
-		case MYSQL_TYPE_TIME:
-		case MYSQL_TYPE_DATETIME:
-			return sizeof(MYSQL_TIME);
+		case POCO_MYSQL_TYPE_DATE:
+		case POCO_MYSQL_TYPE_TIME:
+		case POCO_MYSQL_TYPE_DATETIME:
+			return sizeof(POCO_MYSQL_TIME);
 
-		case MYSQL_TYPE_DECIMAL:
-		case MYSQL_TYPE_NEWDECIMAL:
-		case MYSQL_TYPE_STRING:
-		case MYSQL_TYPE_VAR_STRING:
-		case MYSQL_TYPE_TINY_BLOB:
-		case MYSQL_TYPE_MEDIUM_BLOB:
-		case MYSQL_TYPE_LONG_BLOB:
-		case MYSQL_TYPE_BLOB:
+		case POCO_MYSQL_TYPE_DECIMAL:
+		case POCO_MYSQL_TYPE_NEWDECIMAL:
+		case POCO_MYSQL_TYPE_STRING:
+		case POCO_MYSQL_TYPE_VAR_STRING:
+		case POCO_MYSQL_TYPE_TINY_BLOB:
+		case POCO_MYSQL_TYPE_MEDIUM_BLOB:
+		case POCO_MYSQL_TYPE_LONG_BLOB:
+		case POCO_MYSQL_TYPE_BLOB:
 			return field.length;
 
 		default:
@@ -81,55 +81,55 @@ namespace
 		}
 	}	
 
-	Poco::Data::MetaColumn::ColumnDataType fieldType(const MYSQL_FIELD& field)
+	Poco::Data::MetaColumn::ColumnDataType fieldType(const POCO_MYSQL_FIELD& field)
 		/// Convert field MySQL-type to Poco-type	
 	{
 		bool unsig = ((field.flags & UNSIGNED_FLAG) == UNSIGNED_FLAG);
 
 		switch (field.type)
 		{
-		case MYSQL_TYPE_TINY:     
+		case POCO_MYSQL_TYPE_TINY:     
 			if (unsig) return Poco::Data::MetaColumn::FDT_UINT8;
 			return Poco::Data::MetaColumn::FDT_INT8;
 
-		case MYSQL_TYPE_SHORT:
+		case POCO_MYSQL_TYPE_SHORT:
 			if (unsig) return Poco::Data::MetaColumn::FDT_UINT16;
 			return Poco::Data::MetaColumn::FDT_INT16;
 
-		case MYSQL_TYPE_INT24:
-		case MYSQL_TYPE_LONG:     
+		case POCO_MYSQL_TYPE_INT24:
+		case POCO_MYSQL_TYPE_LONG:     
 			if (unsig) return Poco::Data::MetaColumn::FDT_UINT32;
 			return Poco::Data::MetaColumn::FDT_INT32;
 
-		case MYSQL_TYPE_FLOAT:    
+		case POCO_MYSQL_TYPE_FLOAT:    
 			return Poco::Data::MetaColumn::FDT_FLOAT;
 
-		case MYSQL_TYPE_DECIMAL:
-		case MYSQL_TYPE_NEWDECIMAL:
-		case MYSQL_TYPE_DOUBLE:   
+		case POCO_MYSQL_TYPE_DECIMAL:
+		case POCO_MYSQL_TYPE_NEWDECIMAL:
+		case POCO_MYSQL_TYPE_DOUBLE:   
 			return Poco::Data::MetaColumn::FDT_DOUBLE;
 
-		case MYSQL_TYPE_LONGLONG: 
+		case POCO_MYSQL_TYPE_LONGLONG: 
 			if (unsig) return Poco::Data::MetaColumn::FDT_UINT64;
 			return Poco::Data::MetaColumn::FDT_INT64;
 			
-		case MYSQL_TYPE_DATE:
+		case POCO_MYSQL_TYPE_DATE:
 			return Poco::Data::MetaColumn::FDT_DATE;
 			
-		case MYSQL_TYPE_TIME:
+		case POCO_MYSQL_TYPE_TIME:
 			return Poco::Data::MetaColumn::FDT_TIME;
 			
-		case MYSQL_TYPE_DATETIME:
+		case POCO_MYSQL_TYPE_DATETIME:
 			return Poco::Data::MetaColumn::FDT_TIMESTAMP;
 			
-		case MYSQL_TYPE_STRING:
-		case MYSQL_TYPE_VAR_STRING:
+		case POCO_MYSQL_TYPE_STRING:
+		case POCO_MYSQL_TYPE_VAR_STRING:
 			return Poco::Data::MetaColumn::FDT_STRING;
 
-		case MYSQL_TYPE_TINY_BLOB:
-		case MYSQL_TYPE_MEDIUM_BLOB:
-		case MYSQL_TYPE_LONG_BLOB:
-		case MYSQL_TYPE_BLOB:
+		case POCO_MYSQL_TYPE_TINY_BLOB:
+		case POCO_MYSQL_TYPE_MEDIUM_BLOB:
+		case POCO_MYSQL_TYPE_LONG_BLOB:
+		case POCO_MYSQL_TYPE_BLOB:
 			return Poco::Data::MetaColumn::FDT_BLOB;
 		default:
 			return Poco::Data::MetaColumn::FDT_UNKNOWN;
@@ -151,7 +151,7 @@ void ResultMetadata::reset()
 	_isNull.resize(0);
 }
 
-void ResultMetadata::init(MYSQL_STMT* stmt)
+void ResultMetadata::init(POCO_MYSQL_STMT* stmt)
 {
 	ResultMetadataHandle h(stmt);
 
@@ -164,7 +164,7 @@ void ResultMetadata::init(MYSQL_STMT* stmt)
 	}
 
 	std::size_t count = mysql_num_fields(h);
-	MYSQL_FIELD* fields = mysql_fetch_fields(h);
+	POCO_MYSQL_FIELD* fields = mysql_fetch_fields(h);
 
 	std::size_t commonSize = 0;
 	_columns.reserve(count);
@@ -195,7 +195,7 @@ void ResultMetadata::init(MYSQL_STMT* stmt)
 
 	for (std::size_t i = 0; i < count; i++)
 	{
-		std::memset(&_row[i], 0, sizeof(MYSQL_BIND));
+		std::memset(&_row[i], 0, sizeof(POCO_MYSQL_BIND));
 		unsigned int len = static_cast<unsigned int>(_columns[i].length());
 		_row[i].buffer_type   = fields[i].type;
 		_row[i].buffer_length = len;
@@ -218,7 +218,7 @@ const MetaColumn& ResultMetadata::metaColumn(std::size_t pos) const
 	return _columns[pos];
 }
 
-MYSQL_BIND* ResultMetadata::row()
+POCO_MYSQL_BIND* ResultMetadata::row()
 {
 	return &_row[0];
 }

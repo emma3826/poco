@@ -22,7 +22,7 @@
 #endif
 
 
-#define POCO_MYSQL_VERSION_NUMBER ((NDB_VERSION_MAJOR<<16) | (NDB_VERSION_MINOR<<8) | (NDB_VERSION_BUILD&0xFF))
+#define POCO_POCO_MYSQL_VERSION_NUMBER ((NDB_VERSION_MAJOR<<16) | (NDB_VERSION_MINOR<<8) | (NDB_VERSION_BUILD&0xFF))
 
 
 namespace Poco {
@@ -116,7 +116,7 @@ void SessionHandle::options(mysql_option opt, const char* c)
 
 void SessionHandle::options(mysql_option opt, unsigned int i)
 {
-#if (POCO_MYSQL_VERSION_NUMBER < 0x050108)
+#if (POCO_POCO_MYSQL_VERSION_NUMBER < 0x050108)
 	const char* tmp = (const char *)&i;
 #else
 	const void* tmp = (const void *)&i;
@@ -128,7 +128,7 @@ void SessionHandle::options(mysql_option opt, unsigned int i)
 
 void SessionHandle::connect(const char* host, const char* user, const char* password, const char* db, unsigned int port)
 {
-#ifdef HAVE_MYSQL_REAL_CONNECT
+#ifdef HAVE_POCO_MYSQL_REAL_CONNECT
 	if (!mysql_real_connect(_pHandle, host, user, password, db, port, 0, 0))
 		throw ConnectionFailedException(mysql_error(_pHandle));
 #else
