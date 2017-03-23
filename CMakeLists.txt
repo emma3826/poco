@@ -89,7 +89,7 @@ option(POCO_ENABLEPOCODOC "Enable Poco Documentation Generator" OFF)
 option(POCO_ENABLEPAGECOMPILER "Enable PageCompiler" ON)
 option(POCO_ENABLEPAGECOMPILER_FILE2PAGE "Enable File2Page" ON)
 
-option(FORCE_OPENSSL "Force usage of OpenSSL even under windows" OFF)
+option(POCO_FORCE_OPENSSL "Force usage of OpenSSL even under windows" OFF)
 
 option(POCO_ENABLETESTS
   "Set to OFF|ON (default is OFF) to control build of POCO tests & samples" OFF)
